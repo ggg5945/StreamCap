@@ -1,0 +1,28 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天凌晨 0 点运行
+  workflow_dispatch:    # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整历史记录
+
+      - name: Sync upstream repository
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
+        with:
+          target_sync_branch: main  # 你的 fork 的目标分支
+          target_repo_branch: main  # 你的 fork 的分支
+          upstream_sync_repo: ihmily/StreamCap  # 上游仓库（owner/repo 格式）
+          upstream_sync_branch: main  # 上游的分支
+          git_config_user: GitHub Action  # Git 用户名
+          git_config_email: action@github.com  # Git 邮箱
+          test_mode: false  # 关闭测试模式
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 使用默认 token
