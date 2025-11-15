@@ -18,9 +18,9 @@ jobs:
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
         with:
           target_sync_branch: main  # 你的 fork 的目标分支
-          target_repo_branch: main  # 上游仓库的分支
-          upstream_sync_repo: ihmily/StreamCap  # 上游仓库（无需全 URL）
-          upstream_sync_branch: main  # 上游仓库的分支
+          target_repo_branch: main  # 你的 fork 的分支
+          upstream_sync_repo: ihmily/StreamCap  # 上游仓库（owner/repo 格式）
+          upstream_sync_branch: main  # 上游的分支
           git_config_user: GitHub Action  # Git 用户名
           git_config_email: action@github.com  # Git 邮箱
           test_mode: false  # 关闭测试模式
